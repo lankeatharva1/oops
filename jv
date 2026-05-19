@@ -1,0 +1,893 @@
+1. Implement Student class using following Concepts
+• All types of Constructors
+• Static variables and instance variables
+• Static blocks and instance blocks
+• Static methods and instance methods
+
+class Student {
+
+    // Static variable
+    static String collegeName;
+
+    // Instance variables
+    int rollNo;
+    String name;
+    double marks;
+
+    // Static Block
+    static {
+        collegeName = "ABC College";
+        System.out.println("Static Block Executed");
+    }
+
+    // Instance Block
+    {
+        System.out.println("Instance Block Executed");
+    }
+
+    // Default Constructor
+    Student() {
+        rollNo = 0;
+        name = "Not Assigned";
+        marks = 0.0;
+        System.out.println("Default Constructor Called");
+    }
+
+    // Parameterized Constructor
+    Student(int r, String n, double m) {
+        rollNo = r;
+        name = n;
+        marks = m;
+        System.out.println("Parameterized Constructor Called");
+    }
+
+    // Copy Constructor
+    Student(Student s) {
+        rollNo = s.rollNo;
+        name = s.name;
+        marks = s.marks;
+        System.out.println("Copy Constructor Called");
+    }
+
+    // Instance Method
+    void display() {
+        System.out.println("Roll No : " + rollNo);
+        System.out.println("Name    : " + name);
+        System.out.println("Marks   : " + marks);
+        System.out.println("College : " + collegeName);
+    }
+
+    // Static Method
+    static void changeCollege(String cname) {
+        collegeName = cname;
+        System.out.println("College Changed to : " + collegeName);
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        // Calling Default Constructor
+        Student s1 = new Student();
+
+        System.out.println();
+
+        // Calling Parameterized Constructor
+        Student s2 = new Student(101, "Atharva", 89.5);
+
+        System.out.println();
+
+        // Calling Copy Constructor
+        Student s3 = new Student(s2);
+
+        System.out.println();
+
+        // Display Student Details
+        s1.display();
+
+        System.out.println();
+
+        s2.display();
+
+        System.out.println();
+
+        s3.display();
+
+        System.out.println();
+
+        // Calling Static Method
+        Student.changeCollege("XYZ College");
+
+        System.out.println();
+
+        s2.display();
+    }
+}
+
+
+
+****************************************************************************
+2. Implement Employee class using following Concepts
+All types of Constructors
+• Static variables and instance variables
+• Static blocks and instance blocks
+• Static methods and instance methods
+• Method Overloading
+
+
+class Employee {
+
+    // Static Variable
+    static String companyName;
+
+    // Instance Variables
+    int empId;
+    String empName;
+    double salary;
+
+    // Static Block
+    static {
+        companyName = "Tech Solutions";
+        System.out.println("Static Block Executed");
+    }
+
+    // Instance Block
+    {
+        System.out.println("Instance Block Executed");
+    }
+
+    // Default Constructor
+    Employee() {
+        empId = 0;
+        empName = "Not Assigned";
+        salary = 0.0;
+        System.out.println("Default Constructor Called");
+    }
+
+    // Parameterized Constructor
+    Employee(int id, String name, double sal) {
+        empId = id;
+        empName = name;
+        salary = sal;
+        System.out.println("Parameterized Constructor Called");
+    }
+
+    // Copy Constructor
+    Employee(Employee e) {
+        empId = e.empId;
+        empName = e.empName;
+        salary = e.salary;
+        System.out.println("Copy Constructor Called");
+    }
+
+    // Instance Method
+    void display() {
+        System.out.println("Employee ID   : " + empId);
+        System.out.println("Employee Name : " + empName);
+        System.out.println("Salary        : " + salary);
+        System.out.println("Company       : " + companyName);
+    }
+
+    // Static Method
+    static void changeCompany(String cname) {
+        companyName = cname;
+        System.out.println("Company Changed to : " + companyName);
+    }
+
+    // Method Overloading
+    void calculateSalary() {
+        System.out.println("Salary : " + salary);
+    }
+
+    void calculateSalary(double bonus) {
+        System.out.println("Salary with Bonus : " + (salary + bonus));
+    }
+
+    void calculateSalary(double bonus, double deduction) {
+        System.out.println("Final Salary : " + (salary + bonus - deduction));
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        // Default Constructor
+        Employee e1 = new Employee();
+
+        System.out.println();
+
+        // Parameterized Constructor
+        Employee e2 = new Employee(101, "Atharva", 50000);
+
+        System.out.println();
+
+        // Copy Constructor
+        Employee e3 = new Employee(e2);
+
+        System.out.println();
+
+        // Display Details
+        e1.display();
+
+        System.out.println();
+
+        e2.display();
+
+        System.out.println();
+
+        e3.display();
+
+        System.out.println();
+
+        // Static Method
+        Employee.changeCompany("Infosys");
+
+        System.out.println();
+
+        // Method Overloading
+        e2.calculateSalary();
+
+        e2.calculateSalary(5000);
+
+        e2.calculateSalary(5000, 2000);
+    }
+}
+
+****************************************************************************
+3. There is a class Adder which has two data members of type 1D int array and int variable. It has
+two functions: getdata and numsum. Function getdata accepts non-empty array of distinct integers
+from user in 1D int array data member and a targetsum in another data member. The function numsum
+adds any two elements from an input array which is equal to targetsum and return an array of resulting
+two elements, in any order. If no two numbers sum up to the target sum, the function should return an
+empty array. Note that the target sum is to be obtained by summing two different integers in the array;
+you can’t add a single integer to itself in order to obtain the target sum. You can assume that there will
+be at most one pair of numbers summing up to the target sum. Use constructor. Use extra variables if
+needed
+Input:
+Array=[3,5,-4,8,11,1,-1,7] targetsum=15
+
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+class Adder {
+
+    int arr[];
+    int targetsum;
+
+    // Constructor
+    Adder(int size) {
+        arr = new int[size];
+    }
+
+    // Function to accept data
+    void getdata() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        arr = new int[n];
+
+        System.out.println("Enter array elements:");
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter target sum: ");
+        targetsum = sc.nextInt();
+    }
+
+    // Function to find pair
+    int[] numsum() {
+
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = i + 1; j < arr.length; j++) {
+
+                if (arr[i] + arr[j] == targetsum) {
+
+                    return new int[] { arr[i], arr[j] };
+                }
+            }
+        }
+
+        // Empty array if no pair found
+        return new int[] {};
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        Adder a = new Adder(0);
+
+        a.getdata();
+
+        int result[] = a.numsum();
+
+        System.out.println("Output: " + Arrays.toString(result));
+    }
+}
+
+
+****************************************************************************
+4. There is a class Finder which has two data members of type 1D int array and an integer variable.
+It has two functions: getdata and findPair.
+A. The function getdata accepts a non-empty array of distinct integers from the user and a target
+difference value.
+B. The function findPair finds any two elements from the array such that the absolute difference
+between them is equal to the target value and returns those two elements in an array (in any order).
+If no such pair exists, return an empty array.
+Note: Use constructor , Use extra variables if needed , Only one valid pair will exist at most
+E.g. Input: Array = [2, 6, 9, 3, 11]
+target = 3
+Output: [6, 9]
+
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+class Finder {
+
+    int arr[];
+    int target;
+
+    // Constructor
+    Finder(int size) {
+        arr = new int[size];
+    }
+
+    // Function to accept data
+    void getdata() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        arr = new int[n];
+
+        System.out.println("Enter array elements:");
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter target difference: ");
+        target = sc.nextInt();
+    }
+
+    // Function to find pair with given difference
+    int[] findPair() {
+
+        for (int i = 0; i < arr.length; i++) {
+
+            for (int j = i + 1; j < arr.length; j++) {
+
+                if (Math.abs(arr[i] - arr[j]) == target) {
+
+                    return new int[] { arr[i], arr[j] };
+                }
+            }
+        }
+
+        // Return empty array if no pair found
+        return new int[] {};
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        // Object creation using constructor
+        Finder f = new Finder(0);
+
+        // Accept data
+        f.getdata();
+
+        // Find pair
+        int result[] = f.findPair();
+
+        // Display output
+        System.out.println("Output: " + Arrays.toString(result));
+    }
+}
+
+
+****************************************************************************
+5. Write Java program to calculate area of triangle, square & circle using function overloading.
+Function parameter accept from user (Use function Overloading concepts and Inheritance).
+
+import java.util.Scanner;
+
+// Parent Class
+class Shape {
+
+    // Function Overloading
+
+    // Area of Square
+    void area(int side) {
+        int squareArea = side * side;
+        System.out.println("Area of Square = " + squareArea);
+    }
+
+    // Area of Circle
+    void area(double radius) {
+        double circleArea = 3.14 * radius * radius;
+        System.out.println("Area of Circle = " + circleArea);
+    }
+
+    // Area of Triangle
+    void area(double base, double height) {
+        double triangleArea = 0.5 * base * height;
+        System.out.println("Area of Triangle = " + triangleArea);
+    }
+}
+
+// Child Class using Inheritance
+class CalculateArea extends Shape {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Object of Child Class
+        CalculateArea obj = new CalculateArea();
+
+        // Square
+        System.out.print("Enter side of square: ");
+        int side = sc.nextInt();
+        obj.area(side);
+
+        // Circle
+        System.out.print("Enter radius of circle: ");
+        double radius = sc.nextDouble();
+        obj.area(radius);
+
+        // Triangle
+        System.out.print("Enter base of triangle: ");
+        double base = sc.nextDouble();
+
+        System.out.print("Enter height of triangle: ");
+        double height = sc.nextDouble();
+
+        obj.area(base, height);
+    }
+}
+
+****************************************************************************
+6. Write a Java program to calculate salary of employees using method overloading and inheritance.
+Include different employee types (Manager, Developer, Intern) with additional allowances and bonuses. Accept
+input from user and display detailed salary breakdown.
+import java.util.Scanner;
+
+// Parent Class
+class Employee {
+
+    String name;
+    double basicSalary;
+
+    // Constructor
+    Employee(String name, double basicSalary) {
+        this.name = name;
+        this.basicSalary = basicSalary;
+    }
+
+    // Method Overloading
+    double calculateSalary() {
+        return basicSalary;
+    }
+
+    double calculateSalary(double allowance) {
+        return basicSalary + allowance;
+    }
+
+    double calculateSalary(double allowance, double bonus) {
+        return basicSalary + allowance + bonus;
+    }
+
+    // Display Method
+    void display(double totalSalary) {
+        System.out.println("Employee Name : " + name);
+        System.out.println("Basic Salary  : " + basicSalary);
+        System.out.println("Total Salary  : " + totalSalary);
+    }
+}
+
+// Child Class Manager
+class Manager extends Employee {
+
+    double allowance;
+    double bonus;
+
+    Manager(String name, double basicSalary, double allowance, double bonus) {
+        super(name, basicSalary);
+        this.allowance = allowance;
+        this.bonus = bonus;
+    }
+
+    void showSalary() {
+        double total = calculateSalary(allowance, bonus);
+
+        System.out.println("\n----- Manager Salary Details -----");
+        display(total);
+        System.out.println("Allowance     : " + allowance);
+        System.out.println("Bonus         : " + bonus);
+    }
+}
+
+// Child Class Developer
+class Developer extends Employee {
+
+    double allowance;
+
+    Developer(String name, double basicSalary, double allowance) {
+        super(name, basicSalary);
+        this.allowance = allowance;
+    }
+
+    void showSalary() {
+        double total = calculateSalary(allowance);
+
+        System.out.println("\n----- Developer Salary Details -----");
+        display(total);
+        System.out.println("Allowance     : " + allowance);
+    }
+}
+
+// Child Class Intern
+class Intern extends Employee {
+
+    Intern(String name, double basicSalary) {
+        super(name, basicSalary);
+    }
+
+    void showSalary() {
+        double total = calculateSalary();
+
+        System.out.println("\n----- Intern Salary Details -----");
+        display(total);
+    }
+}
+
+// Main Class
+class SalarySystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Manager Input
+        System.out.println("Enter Manager Details");
+        System.out.print("Name: ");
+        String mName = sc.nextLine();
+
+        System.out.print("Basic Salary: ");
+        double mSalary = sc.nextDouble();
+
+        System.out.print("Allowance: ");
+        double mAllowance = sc.nextDouble();
+
+        System.out.print("Bonus: ");
+        double mBonus = sc.nextDouble();
+
+        sc.nextLine();
+
+        // Developer Input
+        System.out.println("\nEnter Developer Details");
+        System.out.print("Name: ");
+        String dName = sc.nextLine();
+
+        System.out.print("Basic Salary: ");
+        double dSalary = sc.nextDouble();
+
+        System.out.print("Allowance: ");
+        double dAllowance = sc.nextDouble();
+
+        sc.nextLine();
+
+        // Intern Input
+        System.out.println("\nEnter Intern Details");
+        System.out.print("Name: ");
+        String iName = sc.nextLine();
+
+        System.out.print("Basic Salary: ");
+        double iSalary = sc.nextDouble();
+
+        // Object Creation
+        Manager m = new Manager(mName, mSalary, mAllowance, mBonus);
+        Developer d = new Developer(dName, dSalary, dAllowance);
+        Intern i = new Intern(iName, iSalary);
+
+        // Display Salary Details
+        m.showSalary();
+        d.showSalary();
+        i.showSalary();
+    }
+}
+
+****************************************************************************
+7. Write a Java program to calculate final result of students using method overloading and inheritance.
+Accept multiple subject marks from the user and perform the following:
+• Calculate total and percentage using overloaded methods
+• Implement grade calculation using inheritance
+• Display detailed result including marks, percentage, grade, and remarks
+• Sort students based on percentage
+
+import java.util.Scanner;
+
+// Parent Class
+class Student {
+
+    String name;
+    int rollNo;
+    int marks[];
+    int total;
+    double percentage;
+
+    // Constructor
+    Student(String name, int rollNo, int subjects) {
+
+        this.name = name;
+        this.rollNo = rollNo;
+        marks = new int[subjects];
+    }
+
+    // Accept Marks
+    void getMarks(Scanner sc) {
+
+        System.out.println("Enter marks of subjects:");
+
+        for (int i = 0; i < marks.length; i++) {
+            marks[i] = sc.nextInt();
+        }
+    }
+
+    // Method Overloading for Total Calculation
+    int calculateTotal(int a, int b) {
+        return a + b;
+    }
+
+    int calculateTotal(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    int calculateTotal(int arr[]) {
+
+        int sum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        return sum;
+    }
+
+    // Percentage Calculation
+    double calculatePercentage() {
+
+        total = calculateTotal(marks);
+
+        percentage = (double) total / (marks.length);
+
+        return percentage;
+    }
+}
+
+// Child Class using Inheritance
+class Result extends Student {
+
+    String grade;
+    String remarks;
+
+    // Constructor
+    Result(String name, int rollNo, int subjects) {
+        super(name, rollNo, subjects);
+    }
+
+    // Grade Calculation
+    void calculateGrade() {
+
+        if (percentage >= 75) {
+            grade = "A";
+            remarks = "Excellent";
+        } else if (percentage >= 60) {
+            grade = "B";
+            remarks = "Very Good";
+        } else if (percentage >= 50) {
+            grade = "C";
+            remarks = "Good";
+        } else if (percentage >= 35) {
+            grade = "D";
+            remarks = "Pass";
+        } else {
+            grade = "F";
+            remarks = "Fail";
+        }
+    }
+
+    // Display Result
+    void displayResult() {
+
+        System.out.println("\n----------------------------");
+        System.out.println("Student Name : " + name);
+        System.out.println("Roll No      : " + rollNo);
+
+        System.out.print("Marks        : ");
+
+        for (int m : marks) {
+            System.out.print(m + " ");
+        }
+
+        System.out.println("\nTotal Marks  : " + total);
+        System.out.println("Percentage   : " + percentage);
+        System.out.println("Grade        : " + grade);
+        System.out.println("Remarks      : " + remarks);
+    }
+}
+
+// Main Class
+class StudentResultSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+
+        System.out.print("Enter number of subjects: ");
+        int subjects = sc.nextInt();
+
+        Result students[] = new Result[n];
+
+        // Input Student Details
+        for (int i = 0; i < n; i++) {
+
+            sc.nextLine();
+
+            System.out.println("\nEnter details of Student " + (i + 1));
+
+            System.out.print("Enter Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter Roll No: ");
+            int roll = sc.nextInt();
+
+            students[i] = new Result(name, roll, subjects);
+
+            students[i].getMarks(sc);
+
+            students[i].calculatePercentage();
+
+            students[i].calculateGrade();
+        }
+
+        // Sorting based on Percentage
+        for (int i = 0; i < n - 1; i++) {
+
+            for (int j = i + 1; j < n; j++) {
+
+                if (students[i].percentage < students[j].percentage) {
+
+                    Result temp = students[i];
+                    students[i] = students[j];
+                    students[j] = temp;
+                }
+            }
+        }
+
+        // Display Sorted Results
+        System.out.println("\n===== STUDENT RESULT =====");
+
+        for (int i = 0; i < n; i++) {
+            students[i].displayResult();
+        }
+    }
+}
+****************************************************************************
+8. Write a program for following exception, develop a suitable scenario in which the following
+exceptions occur:
+a. divide by zero
+b. Array index out of bounds exception
+c. Null pointer Exception
+
+class ExceptionDemo {
+
+    public static void main(String[] args) {
+
+        // a. Divide by Zero Exception
+        try {
+
+            int a = 10;
+            int b = 0;
+
+            int result = a / b;
+
+            System.out.println("Result = " + result);
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Exception: Divide by Zero");
+        }
+
+        // b. Array Index Out Of Bounds Exception
+        try {
+
+            int arr[] = {10, 20, 30};
+
+            System.out.println(arr[5]);
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+
+            System.out.println("Exception: Array Index Out Of Bounds");
+        }
+
+        // c. Null Pointer Exception
+        try {
+
+            String name = null;
+
+            System.out.println(name.length());
+
+        } catch (NullPointerException e) {
+
+            System.out.println("Exception: Null Pointer Exception");
+        }
+    }
+}
+
+****************************************************************************
+9. Write a Java program to demonstrate the following exceptions with suitable scenarios:
+a. NumberFormatException
+b. ArithmeticException
+c. FileNotFoundException
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+class ExceptionHandlingDemo {
+
+    public static void main(String[] args) {
+
+        // a. NumberFormatException
+        try {
+
+            String str = "ABC";
+
+            int num = Integer.parseInt(str);
+
+            System.out.println("Number = " + num);
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("Exception: Number Format Exception");
+        }
+
+        // b. ArithmeticException
+        try {
+
+            int a = 20;
+            int b = 0;
+
+            int result = a / b;
+
+            System.out.println("Result = " + result);
+
+        } catch (ArithmeticException e) {
+
+            System.out.println("Exception: Arithmetic Exception");
+        }
+
+        // c. FileNotFoundException
+        try {
+
+            File file = new File("data.txt");
+
+            Scanner sc = new Scanner(file);
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println("Exception: File Not Found Exception");
+        }
+    }
+}
